@@ -1,9 +1,34 @@
-/**{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}*/
+:root {
+  --primary:#2196f3;
+  --secondary:#42a5f5;
+  --tertiary:#e3f2fd;
+  --header-color:#64b5f6;
+  --primary-text-color:#fff;
+}
 
-body{
-    background-color: red;
+.navbar-color{
+    background-color: var(--primary);
+}
+
+.navbar-color a{
+    color: var(--light) !important;
+}
+
+.btn-color{
+    color:var(--secondary) !important;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.text-login{
+    color: var(--secondary);
+}
+
+.btn-submit{
+    background-color: var(--primary);
+    color: var(--primary-text-color) !important;
 }
