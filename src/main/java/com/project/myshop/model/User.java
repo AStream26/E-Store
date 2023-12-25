@@ -34,6 +34,11 @@ public class User {
     @Column(length = 10)
     private Role role;
     
+    @Column(length = 15)
+    private String mobileNo;
+    
+    private String password;
+    
     @CreationTimestamp
     private LocalDateTime createdAt;
     
@@ -86,6 +91,32 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
 
     @Override
     public String toString() {
