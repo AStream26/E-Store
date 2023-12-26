@@ -32,3 +32,8 @@
     background-color: var(--primary);
     color: var(--primary-text-color) !important;
 }
+
+
+.alertMessage{
+    background-color: red;
+}

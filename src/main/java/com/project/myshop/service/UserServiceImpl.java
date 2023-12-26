@@ -1,6 +1,8 @@
 package com.project.myshop.service;
 
 
+import com.project.myshop.dao.IDao;
+import com.project.myshop.dao.UserDao;
 import com.project.myshop.enums.Dao;
 import com.project.myshop.enums.Service;
 import com.project.myshop.model.User;
@@ -29,4 +31,11 @@ public class UserServiceImpl implements IService {
     }
     public Status updateUserById(Object obj){return null;}
     public Status deleteUserById(Object obj){return  null;}
+    
+    public  User getUserByEmail(String email){
+        
+        IDao dao = DaoFactoryProvider.getDao(Dao.USER_DAO);
+        UserDao userDao = (UserDao)dao;
+        return userDao.getUserByEmail(email);
+    }
 }

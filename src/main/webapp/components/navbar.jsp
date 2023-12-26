@@ -15,7 +15,7 @@
         <a class="nav-link" href="login.jsp">Login</a>
       </li>
       <li class="nav-item pl-4">
-        <a class="nav-link" href="#">Signup</a>
+        <a class="nav-link" href="register.jsp">Signup</a>
       </li>
     </ul>
    
