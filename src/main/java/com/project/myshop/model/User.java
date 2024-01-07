@@ -25,7 +25,7 @@ public class User {
     @Column(length = 50)
     private String address;
     
-    @Column(length = 25)
+    @Column(length = 25,unique = true)
     private String email;
     
     @Column(length = 20)
@@ -34,7 +34,7 @@ public class User {
     @Column(length = 10)
     private Role role;
     
-    @Column(length = 15)
+    @Column(length = 15,unique = true)
     private String mobileNo;
     
     private String password;
@@ -121,8 +121,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", name=" + name + ", address=" + address + ", email=" + email + ", image=" + image + ", role=" + role + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
-    }
-    
-    
+    }    
     
 }

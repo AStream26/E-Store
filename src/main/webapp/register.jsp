@@ -1,9 +1,17 @@
 <%@include file="components/header.jsp" %>
     
 <div class="container p-4 mt-5">
-       
+    
+     <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="position: relative;">
+            <%@include file="components/message.jsp" %>
+        </div>
+         <div class="col-md-2"></div>
+    </div>
+    
          <div class="row">
-             <div class="col-md-2"></div>
+             <div class="col-md-3"></div>
         <div class="col-md-6 card p-md-4">
              <div class="card-body m-2">
             <div class="text-center">
@@ -35,7 +43,7 @@
                 </form>
         </div>
                </div>
-              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
        
     </div>
         

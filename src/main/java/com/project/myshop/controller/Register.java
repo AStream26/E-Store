@@ -7,6 +7,7 @@ import com.project.myshop.enums.Status;
 import com.project.myshop.factory.ServiceFactoryProvider;
 import com.project.myshop.model.User;
 import com.project.myshop.service.IService;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -46,15 +47,24 @@ public class Register extends HttpServlet {
             
             if(status == Status.SUCCESS){
                 System.out.println("User Created!!");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+                request.setAttribute("message", "account created . login to continue");
+                request.setAttribute("type", "succcess");
+                dispatcher.forward(request, response);
             }
             else {
                 System.err.println("User creation Failed!!");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+                request.setAttribute("message", "account cannot be created");
+                request.setAttribute("type", "failure");
+                dispatcher.forward(request, response);
             }
             
         }
         catch(Exception exp){
             
             exp.printStackTrace();
+           
         }
     }
 

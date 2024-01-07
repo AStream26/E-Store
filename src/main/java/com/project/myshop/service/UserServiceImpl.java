@@ -17,12 +17,16 @@ public class UserServiceImpl implements IService {
     
     public Status save(Object obj){
         
-        User user = (User)obj;
+        try{
+            User user = (User)obj;
         String password = PasswordEncryptionUtil.encryptPassword(user.getPassword());
-       // System.out.println("Password = " + password);
         user.setPassword(password);
         
         return DaoFactoryProvider.getDao(Dao.USER_DAO).save(user);
+        }
+        catch(Exception exp){
+            throw exp;
+        }
     }
     
     public User getUserById(Object obj){
@@ -32,10 +36,13 @@ public class UserServiceImpl implements IService {
     public Status updateUserById(Object obj){return null;}
     public Status deleteUserById(Object obj){return  null;}
     
-    public  User getUserByEmail(String email){
+    public  User getUserByEmailAndPwd(String email,String pwd){
         
         IDao dao = DaoFactoryProvider.getDao(Dao.USER_DAO);
         UserDao userDao = (UserDao)dao;
-        return userDao.getUserByEmail(email);
+        User user = userDao.getUserByEmail(email);
+        
+        if(user == null || !PasswordEncryptionUtil.checkPassword(pwd, user.getPassword()))return null;  
+        return user;
     }
 }

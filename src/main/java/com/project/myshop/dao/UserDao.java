@@ -29,8 +29,8 @@ public class UserDao implements IDao {
              flag = true;
          }
          catch(Exception exp){
-             exp.printStackTrace();
-             return Status.FAILURE;
+             
+            throw exp;
          }
          finally{
              
