@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class JWTUtil {
     private static final String SECRET_KEY = "@7383627823nsnshsauavhauv-jkhefb##IAEFWEHF33222222JSJSDJFDUI3RBKJAsjaa";
-    
+     
     public static  final String createJWT(String userId,long expirationTime) throws JOSEException{
         
         JWSSigner signer = new MACSigner(SECRET_KEY);
@@ -33,16 +33,42 @@ public class JWTUtil {
         
     }
     
-    public static final Map<String,Object> parseJWT(String token) throws ParseException,JOSEException{
+    public static final JWTClaimsSet parseJWT(String token){
         
-        SignedJWT signedJWT = SignedJWT.parse(token);
-        
-        JWSVerifier verifier = new MACVerifier(SECRET_KEY);
-        
-        if(!signedJWT.verify(verifier)){
-            throw new JOSEException("JWT verification failed");
+       
+        JWTClaimsSet claims = null;
+        SignedJWT signedJWT = null;
+        try{
+            System.out.println(token);
+            signedJWT = SignedJWT.parse(token);
+
+            JWSVerifier verifier = new MACVerifier(SECRET_KEY);
+
+            if(!signedJWT.verify(verifier)){
+                return null;
+            }   
+            claims = signedJWT.getJWTClaimsSet();
         }
+        catch(ParseException | JOSEException exp){
+            System.out.println(exp.getMessage());   
+        }
+        return claims;
+    }
+    
+    public static  final boolean isValid(JWTClaimsSet claimSet){
         
-        return signedJWT.getJWTClaimsSet().getClaims();
+        try{    
+            Date expTime = claimSet.getExpirationTime();
+            
+            if(expTime!= null && expTime.before(new Date())){
+                // token expired
+                return false;
+            }
+        }
+        catch(Exception exp){
+            exp.getMessage();
+            return false;
+        }
+        return true;        
     }
 }

@@ -41,11 +41,9 @@ public class login extends HttpServlet {
                 System.out.println(user);
                 
                 String token = JWTUtil.createJWT(user.getId().toString(), 300000);
-                
+                System.out.println(token);
                 Cookie cookie = new Cookie("token", token);
                 cookie.setMaxAge(3600);
-                cookie.setPath("/");
-                System.out.println(token);
                 response.addCookie(cookie);   
                  response.sendRedirect("/MyShop");
                 
