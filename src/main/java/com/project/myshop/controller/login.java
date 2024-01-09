@@ -1,5 +1,6 @@
 package com.project.myshop.controller;
 
+import com.project.myshop.enums.Role;
 import com.project.myshop.enums.Service;
 import com.project.myshop.factory.ServiceFactoryProvider;
 import com.project.myshop.helper.JWTUtil;
@@ -40,12 +41,12 @@ public class login extends HttpServlet {
             if(user != null){
                 System.out.println(user);
                 
-                String token = JWTUtil.createJWT(user.getId().toString(), 300000);
+                String token = JWTUtil.createJWT(user.getId().toString(), 30000);
                 System.out.println(token);
                 Cookie cookie = new Cookie("token", token);
-                cookie.setMaxAge(3600);
+                cookie.setMaxAge(36000);
                 response.addCookie(cookie);   
-                 response.sendRedirect("/MyShop");
+                response.sendRedirect("/MyShop");
                 
             }
             else{

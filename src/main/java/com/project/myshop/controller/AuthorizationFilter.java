@@ -1,7 +1,10 @@
 package com.project.myshop.controller;
 
 import com.nimbusds.jwt.JWTClaimsSet;
+import com.project.myshop.enums.Service;
+import com.project.myshop.factory.ServiceFactoryProvider;
 import com.project.myshop.helper.JWTUtil;
+import com.project.myshop.model.User;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -12,9 +15,9 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+
 
 
 @WebFilter(filterName = "AuthorizationFilter", urlPatterns = {"/*"})
@@ -27,10 +30,11 @@ public class AuthorizationFilter extends HttpFilter implements Filter{
     public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{
         
         HttpServletRequest httpRequest = (HttpServletRequest)request;
+        HttpServletResponse httpResponse = (HttpServletResponse)response;
         System.out.println(httpRequest.getRequestURI());
         
         Cookie[] cookies = httpRequest.getCookies();
-       
+      //  System.out.println(cookies.length);
        if(cookies != null){
            
             for(Cookie cookie:cookies){
@@ -42,7 +46,16 @@ public class AuthorizationFilter extends HttpFilter implements Filter{
                 if(claimSet != null && JWTUtil.isValid(claimSet)){
                     Integer userId =Integer.parseInt( claimSet.getSubject());
                     System.out.println("user Id = " + userId);
-                    request.setAttribute("userId", userId);
+                    
+                    if(request.getAttribute("currentUser") == null){
+                        User currentUser = ServiceFactoryProvider.getService(Service.USER_SERVICE).getById(userId);
+                        System.out.println(currentUser);
+                        request.setAttribute("currentUser", currentUser);
+                    }    
+                    
+                }
+                else{
+                    System.err.println("Expired");
                 }
             }
         }

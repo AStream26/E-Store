@@ -6,7 +6,7 @@ import com.project.myshop.model.User;
 
 public interface IService {
     Status save(Object obj);
-    User getUserById(Object obj);
+    User getById(Object obj);
     Status updateUserById(Object obj);
     Status deleteUserById(Object obj);
 }

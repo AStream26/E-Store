@@ -47,9 +47,24 @@ public class UserDao implements IDao {
         return Status.SUCCESS;
     }
     
-    public User getById(Object user){
+    public User getById(Object userId){
         
-        return null;
+        userId = (Integer)userId;
+        SessionFactory factory = null;
+        User user = null;
+        try{
+            factory = SessionFactoryProvider.getSessionFactory();
+            session = factory.openSession();
+            
+            user = session.get(User.class,userId);
+            
+            return user;
+        }
+        catch(Exception exp){
+            System.err.println("Error = "+ exp.getMessage());
+        }
+        
+        return user;
     }
     
     public User getUserByEmail(String email){

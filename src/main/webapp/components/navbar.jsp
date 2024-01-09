@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light navbar-color">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-color">
     <div class="container-fluid">
         
         <a class="navbar-brand pl-5" href="/MyShop">MyShop</a>
@@ -8,15 +9,39 @@
 
   <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item active pr-5">
         <a class="nav-link" href="#">Cart <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item pl-4">
-        <a class="nav-link" href="login.jsp">Login</a>
-      </li>
-      <li class="nav-item pl-4">
-        <a class="nav-link" href="register.jsp">Signup</a>
-      </li>
+      
+      <c:choose>
+          
+          <c:when test='${requestScope.currentUser == null}'>
+            <li class="nav-item pr-4">
+                 <a class="nav-link" href="login.jsp">Login</a>
+            </li>
+            <li class="nav-item pr-4">
+                 <a class="nav-link" href="register.jsp">Signup</a>
+            </li>
+          </c:when>
+            
+            <c:otherwise>
+            <li class="nav-item pr-4">
+                <div class="dropdown">
+                    <img src="/MyShop/images/default.jpg" alt="This is a profile icon" class="img-thumbnail rounded-circle profile" >
+                    <button class="btn btn-outline-light dropdown-toggle dropdown-custom" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      ${requestScope.currentUser.getName().split(" ")[0]}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item"  style="color:#343a40!important;"href="#">Profile</a>
+                        <a class="dropdown-item" href="logout" style="color:#343a40!important;">Logout</a>
+                    </div>
+                </div>
+<!--                <a class="nav-link" href="login.jsp"></a>-->
+            </li>
+            </c:otherwise>
+          
+      </c:choose>
+               
     </ul>
    
   </div>

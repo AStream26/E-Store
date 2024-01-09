@@ -29,9 +29,9 @@ public class UserServiceImpl implements IService {
         }
     }
     
-    public User getUserById(Object obj){
+    public User getById(Object userId){
         
-        return null;
+        return DaoFactoryProvider.getDao(Dao.USER_DAO).getById(userId);
     }
     public Status updateUserById(Object obj){return null;}
     public Status deleteUserById(Object obj){return  null;}

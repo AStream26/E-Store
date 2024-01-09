@@ -14,8 +14,18 @@
     color: var(--light) !important;
 }
 
+.profile{
+    cursor: pointer;
+    margin-right: 4px;
+    height: 45px;
+    border-color: var(--primary);
+}
 .btn-color{
     color:var(--secondary) !important;
+}
+
+.dropdown-custom{
+    border: none;
 }
 
 .form-control:focus {

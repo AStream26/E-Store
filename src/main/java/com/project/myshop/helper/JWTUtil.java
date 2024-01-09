@@ -21,7 +21,7 @@ public class JWTUtil {
         JWSSigner signer = new MACSigner(SECRET_KEY);
         
         Date now = new Date();
-        Date expTime = new Date(now.getTime() + expirationTime);
+        Date expTime = new Date(now.getTime() + (expirationTime * 1000));
         
         JWTClaimsSet claim = new JWTClaimsSet.Builder().subject(userId).issueTime(now).expirationTime(expTime).build();
         
