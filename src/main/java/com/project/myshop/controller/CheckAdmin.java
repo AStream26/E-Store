@@ -32,7 +32,7 @@ public class CheckAdmin extends HttpFilter implements Filter{
         
         User Currentuser = (User)request.getAttribute("currentUser");
         
-        if(Currentuser.getRole() != Role.ADMIN){
+        if(Currentuser == null || Currentuser.getRole() != Role.ADMIN){
             
             System.err.println("Now admin Redircting.....");
             httpResponse.sendRedirect( "/MyShop/");

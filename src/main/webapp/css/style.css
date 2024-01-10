@@ -24,6 +24,12 @@
     color:var(--secondary) !important;
 }
 
+.custom-bg{
+    background-color:var(--secondary) !important;
+    color: #fff;
+}
+
+
 .dropdown-custom{
     border: none;
 }
@@ -33,6 +39,13 @@
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+
+.dashboard-list div :hover{
+    background-color:var(--tertiary) !important;
+     cursor: pointer;
+}
+
 
 .text-login{
     color: var(--secondary);
@@ -46,4 +59,8 @@
 
 .alertMessage{
     background-color: red;
+}
+
+.thumbnail{
+    width: 50%;
 }
