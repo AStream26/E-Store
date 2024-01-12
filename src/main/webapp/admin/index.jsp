@@ -4,8 +4,9 @@
 <div class="container">
      <br/>
      <br/>
+      <%@include file="../components/message.jsp" %>
    <div class="row dashboard-list">
-  
+    
     <div class="col-12 col-sm-6 col-md-4 ">
         <div class="card p-3 d-flex">
             <div class="d-flex justify-content-center">
@@ -47,7 +48,7 @@
             </div>
           <div class="card-body d-flex flex-column">
               <div class="font-weight-bold mx-auto">
-                   <h4>1234</h4>
+                  <h4>${sessionScope.categoryList.size()}</h4>
               </div>
               
               <div class="font-weight-bold mx-auto">
@@ -100,5 +101,7 @@
    
 <%@include file="../components/add_category.jsp" %>
 <%@include file="../components/add_Product.jsp" %>
-    
+
+
+
 <%@include file="../components/footer.jsp" %>

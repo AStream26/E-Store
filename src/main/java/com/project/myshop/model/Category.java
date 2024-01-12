@@ -19,7 +19,7 @@ public class Category {
     @Column(length = 30)
     private String description;
     
-    @Column(length = 20)
+    @Column(length = 20,unique = true)
     private String categoryName;
 
     public Integer getCategoryId() {
@@ -55,6 +55,11 @@ public class Category {
 
     public void setProduct(Set<Product> product) {
         this.product = product;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" + "categoryId=" + categoryId + ", description=" + description + ", categoryName=" + categoryName + ", product=" + product + '}';
     }
     
     

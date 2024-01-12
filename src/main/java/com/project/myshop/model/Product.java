@@ -11,30 +11,30 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-@Entity(name="Product")
+@Entity(name = "Product")
 public class Product {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
-    
+
     @Column(length = 30)
     private String name;
-    
+
     @Column(length = 30)
     private String description;
-    
+
     @Column(length = 30)
     private String image;
-    
+
     private Double price;
     private Integer quantity;
-    
+
     @OneToOne(cascade = CascadeType.ALL)
     private Category category;
     @CreationTimestamp
     private LocalDateTime createdAt;
-    
+
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
@@ -49,7 +49,7 @@ public class Product {
     public String getName() {
         return name;
     }
-        
+
     public String getDescription() {
         return description;
     }
@@ -61,7 +61,7 @@ public class Product {
     public Double getPrice() {
         return price;
     }
-    
+
     public Integer getQuantity() {
         return quantity;
     }
@@ -73,8 +73,7 @@ public class Product {
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
-    
-    
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -98,6 +97,13 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
-    
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.project.myshop.controller;
 
 import com.nimbusds.jwt.JWTClaimsSet;
+import com.project.myshop.enums.Dao;
 import com.project.myshop.enums.Service;
 import com.project.myshop.factory.ServiceFactoryProvider;
 import com.project.myshop.helper.JWTUtil;
@@ -44,11 +45,11 @@ public class AuthorizationFilter extends HttpFilter implements Filter{
                 
                 System.out.println(claimSet);
                 if(claimSet != null && JWTUtil.isValid(claimSet)){
-                    Integer userId =Integer.parseInt( claimSet.getSubject());
+                    Integer userId =Integer.valueOf( claimSet.getSubject());
                     System.out.println("user Id = " + userId);
                     
                     if(request.getAttribute("currentUser") == null){
-                        User currentUser = ServiceFactoryProvider.getService(Service.USER_SERVICE).getById(userId);
+                        User currentUser = (User)ServiceFactoryProvider.getService(Service.USER_SERVICE).findById(User.class,userId,Dao.USER_DAO);
                         System.out.println(currentUser);
                         request.setAttribute("currentUser", currentUser);
                     }    

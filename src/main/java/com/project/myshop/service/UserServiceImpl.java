@@ -4,14 +4,12 @@ package com.project.myshop.service;
 import com.project.myshop.dao.IDao;
 import com.project.myshop.dao.UserDao;
 import com.project.myshop.enums.Dao;
-import com.project.myshop.enums.Service;
 import com.project.myshop.model.User;
 import com.project.myshop.enums.Status;
 import com.project.myshop.factory.DaoFactoryProvider;
-import com.project.myshop.factory.ServiceFactoryProvider;
 import com.project.myshop.helper.PasswordEncryptionUtil;
 
-public class UserServiceImpl implements IService {
+public class UserServiceImpl implements IService<User> {
     
     
     
@@ -29,12 +27,8 @@ public class UserServiceImpl implements IService {
         }
     }
     
-    public User getById(Object userId){
-        
-        return DaoFactoryProvider.getDao(Dao.USER_DAO).getById(userId);
-    }
-    public Status updateUserById(Object obj){return null;}
-    public Status deleteUserById(Object obj){return  null;}
+    public Status updateById(Object obj){return null;}
+    public Status deleteById(Object obj){return  null;}
     
     public  User getUserByEmailAndPwd(String email,String pwd){
         

@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
     <div class="container-fluid">
         
@@ -33,7 +33,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item"  style="color:#343a40!important;"href="#">Profile</a>
-                        <a class="dropdown-item" href="logout" style="color:#343a40!important;">Logout</a>
+                        <a class="dropdown-item" href="/MyShop/logout" style="color:#343a40!important;">Logout</a>
                     </div>
                 </div>
 <!--                <a class="nav-link" href="login.jsp"></a>-->

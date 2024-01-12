@@ -1,4 +1,4 @@
-<%@include  file="components/header.jsp" %>
-    
-<h1>Main Page</h1>
-<%@include file="components/footer.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<c:redirect url="/product"/>
