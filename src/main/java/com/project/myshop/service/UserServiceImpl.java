@@ -8,11 +8,10 @@ import com.project.myshop.model.User;
 import com.project.myshop.enums.Status;
 import com.project.myshop.factory.DaoFactoryProvider;
 import com.project.myshop.helper.PasswordEncryptionUtil;
+import java.util.List;
 
 public class UserServiceImpl implements IService<User> {
-    
-    
-    
+
     public Status save(User user){
         
         try{
@@ -37,5 +36,10 @@ public class UserServiceImpl implements IService<User> {
         
         if(user == null || !PasswordEncryptionUtil.checkPassword(pwd, user.getPassword()))return null;  
         return user;
+    }
+    
+    
+    public List<User> find(String queryCondition, String queryValue, Class<User> inputClass) {
+        return DaoFactoryProvider.getDao(Dao.USER_DAO).find(queryCondition, queryValue, inputClass);
     }
 }

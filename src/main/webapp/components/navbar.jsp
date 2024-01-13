@@ -17,10 +17,10 @@
           
           <c:when test='${requestScope.currentUser == null}'>
             <li class="nav-item pr-4">
-                 <a class="nav-link" href="login.jsp">Login</a>
+                <a class="nav-link" href="/MyShop/login.jsp" >Login</a>
             </li>
             <li class="nav-item pr-4">
-                 <a class="nav-link" href="register.jsp">Signup</a>
+                 <a class="nav-link" href="/MyShop/register.jsp">Signup</a>
             </li>
           </c:when>
             

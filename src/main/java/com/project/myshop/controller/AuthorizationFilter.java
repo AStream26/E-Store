@@ -19,55 +19,56 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @WebFilter(filterName = "AuthorizationFilter", urlPatterns = {"/*"})
-public class AuthorizationFilter extends HttpFilter implements Filter{
-    
-    public AuthorizationFilter(){
+public class AuthorizationFilter extends HttpFilter implements Filter {
+
+    public AuthorizationFilter() {
         System.out.println("com.project.myshop.controller.AuthorizationFilter.<init>()");
     }
-    
-    public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{
-        
-        HttpServletRequest httpRequest = (HttpServletRequest)request;
-        HttpServletResponse httpResponse = (HttpServletResponse)response;
-        System.out.println(httpRequest.getRequestURI());
-        
-        Cookie[] cookies = httpRequest.getCookies();
-      //  System.out.println(cookies.length);
-       if(cookies != null){
-           
-            for(Cookie cookie:cookies){
-            if(cookie.getName().equals("token")){
-                System.out.println("Cookie Value is " + cookie.getValue());
-                JWTClaimsSet claimSet = JWTUtil.parseJWT(cookie.getValue());
-                
-                System.out.println(claimSet);
-                if(claimSet != null && JWTUtil.isValid(claimSet)){
-                    Integer userId =Integer.valueOf( claimSet.getSubject());
-                    System.out.println("user Id = " + userId);
-                    
-                    if(request.getAttribute("currentUser") == null){
-                        User currentUser = (User)ServiceFactoryProvider.getService(Service.USER_SERVICE).findById(User.class,userId,Dao.USER_DAO);
-                        System.out.println(currentUser);
-                        request.setAttribute("currentUser", currentUser);
-                    }    
-                    
+
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        System.out.println("------" + httpRequest.getRequestURI());
+
+        if (httpRequest.getRequestURI().contains("resource")) {
+            System.out.println("Noy gioooo");
+            chain.doFilter(request, response);
+        } else {
+            Cookie[] cookies = httpRequest.getCookies();
+            if (cookies != null) {
+
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("token")) {
+                        System.out.println("Cookie Value is " + cookie.getValue());
+                        JWTClaimsSet claimSet = JWTUtil.parseJWT(cookie.getValue());
+
+                        System.out.println(claimSet);
+                        if (claimSet != null && JWTUtil.isValid(claimSet)) {
+                            Integer userId = Integer.valueOf(claimSet.getSubject());
+                            System.out.println("user Id = " + userId);
+
+                            if (request.getAttribute("currentUser") == null) {
+                                User currentUser = (User) ServiceFactoryProvider.getService(Service.USER_SERVICE).findById(User.class, userId, Dao.USER_DAO);
+                                System.out.println(currentUser);
+                                request.setAttribute("currentUser", currentUser);
+                            }
+
+                        } else {
+                            System.err.println("Expired");
+                        }
+                    }
                 }
-                else{
-                    System.err.println("Expired");
-                }
+            } else {
+                System.out.println("Cookie expried...");
+
             }
+            chain.doFilter(request, response);
         }
-       }else{
-           System.out.println("Cookie expried...");
-            
-       }
-        chain.doFilter(request, response);
-        
     }
-   
-    public void init(FilterConfig config){
+
+    public void init(FilterConfig config) {
         System.out.println("From the config");
     }
 }

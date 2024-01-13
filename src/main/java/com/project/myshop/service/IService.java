@@ -17,4 +17,6 @@ public interface IService<Model> {
     default List<Model> findAll(Class<Model> inputClass,Dao dao){
         return DaoFactoryProvider.getDao(dao).findAll(inputClass);
     }
+    
+    List<Model> find(String queryCondition,String queryValue,Class<Model> inputClass);
 }

@@ -28,13 +28,12 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
         
         ServletContext context = getServletContext();
-        //System.out.println();
-        if (request.getPathInfo() == null) {
+        System.out.println(request.getContextPath());
+        if (request.getPathInfo() == null || request.getPathInfo() == "/" ) {
             
             List<Product> products = ServiceFactoryProvider.getService(Service.PRODUCT_SERVICE).findAll(Product.class, Dao.PRODUCT_DAO);
             List<Category> categories = ServiceFactoryProvider.getService(Service.CATEGORY_SERVICE).findAll(Category.class, Dao.CATEGORY_DAO);
             context.setAttribute("productList", products);
-            context.setAttribute("categoryList", categories);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
             dispatcher.forward(request, response);
             

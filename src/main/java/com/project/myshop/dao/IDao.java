@@ -4,6 +4,7 @@ import com.project.myshop.enums.Status;
 import com.project.myshop.helper.SessionFactoryProvider;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.util.List;
 import org.hibernate.Session;
@@ -85,6 +86,31 @@ public interface IDao<Model> {
 
         return list;
 
+    }
+    
+    default List<Model> find(String queryCondition,String queryValue,Class<Model> inputClass){
+        SessionFactory factory = null;
+        Session session = null;
+        List<Model> list = null;
+        System.out.println("******************" +queryCondition + " " + queryValue );
+        try {
+            factory = SessionFactoryProvider.getSessionFactory();
+            session = factory.openSession();
+
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Model> criteriaQuery = builder.createQuery(inputClass);
+            Root<Model> root = criteriaQuery.from(inputClass);
+            Predicate condition = builder.equal(root.get(queryCondition), queryValue);
+            criteriaQuery.where(condition);
+            criteriaQuery.select(root);
+            list = session.createQuery(criteriaQuery).getResultList();
+            System.out.println("*--------------" +queryCondition + " " + queryValue );
+
+        } catch (Exception exp) {
+            System.err.println("Error = " + exp.getMessage());
+        }
+
+        return list;
     }
 ;
 }

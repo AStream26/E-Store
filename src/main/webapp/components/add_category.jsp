@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/MyShop/category" method="POST">
+                <form action="/MyShop/product/category" method="POST">
                     <div class="form-group">
                         <label for="category" class="col-form-label">Category</label>
                         <input type="text" class="form-control" name="cName" id="category">
