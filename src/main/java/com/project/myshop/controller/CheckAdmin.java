@@ -49,7 +49,6 @@ public class CheckAdmin extends HttpFilter implements Filter{
             
             HttpSession session = httpRequest.getSession();
             if(session.getAttribute("categoryList") == null){
-                System.out.println("Not null*****");
                 List<Category> categoryList = ServiceFactoryProvider.getService(Service.CATEGORY_SERVICE).findAll(Category.class, Dao.CATEGORY_DAO);
                 session.setAttribute("categoryList", categoryList);
             }

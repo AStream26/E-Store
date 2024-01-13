@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface IService<Model> {
-    Status save(Object obj);
+    Status save(Model model);
     default Model findById(Class<Model> inputClass,Integer id,Dao dao){
         
         return (Model)DaoFactoryProvider.getDao(dao).findById(inputClass, id);

@@ -2,6 +2,7 @@ package com.project.myshop.factory;
 
 import com.project.myshop.dao.CategoryDao;
 import com.project.myshop.dao.IDao;
+import com.project.myshop.dao.ProductDao;
 import com.project.myshop.dao.UserDao;
 import com.project.myshop.enums.Dao;
 public class DaoFactoryProvider {
@@ -19,6 +20,8 @@ public class DaoFactoryProvider {
         }
         else if(Dao.CATEGORY_DAO == dao)
                 daoImpl = new CategoryDao();
+        else if(Dao.PRODUCT_DAO == dao)
+                daoImpl = new ProductDao();
         
         return daoImpl;
     }    

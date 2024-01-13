@@ -1,11 +1,13 @@
 package com.project.myshop.model;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,8 +31,9 @@ public class Product {
 
     private Double price;
     private Integer quantity;
-
-    @OneToOne(cascade = CascadeType.ALL)
+    
+   
+    @ManyToOne
     private Category category;
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -106,4 +109,10 @@ public class Product {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" + "productId=" + productId + ", name=" + name + ", description=" + description + ", image=" + image + ", price=" + price + ", quantity=" + quantity + ", category=" + category.getCategoryName() + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
+    }
+    
+    
 }

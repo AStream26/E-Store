@@ -20,7 +20,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-
 @WebFilter(filterName = "AuthorizationFilter", urlPatterns = {"/*"})
 public class AuthorizationFilter extends HttpFilter implements Filter{
     

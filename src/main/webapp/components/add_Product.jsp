@@ -9,13 +9,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="product" method="POST">
+                <form action="/MyShop/product" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="text" class="form-control" id="product name" placeholder="Product Name" name="pName">
                     </div>
 
                     <div class="form-group">
-                        <textarea class="form-control" id="product-description" placeholder="Product Description" value="pDesp"></textarea>
+                        <textarea class="form-control" id="product-description" placeholder="Product Description" name="pDesp"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -23,10 +23,10 @@
                     </div>
 
                     <div class="form-group">
-                        <select class="form-control" name="category" >
+                        <select class="form-control" name="pCategory" >
                             <option selected>Choose Category</option>
                             <c:forEach var="category" items="${sessionScope.categoryList}">
-                                <option value="0">${category.getCategoryName()}</option>
+                                <option value=${category.getCategoryId()}>${category.getCategoryName()}</option>
                             </c:forEach>
                           
                         </select>

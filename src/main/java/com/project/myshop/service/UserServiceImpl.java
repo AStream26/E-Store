@@ -13,10 +13,9 @@ public class UserServiceImpl implements IService<User> {
     
     
     
-    public Status save(Object obj){
+    public Status save(User user){
         
         try{
-            User user = (User)obj;
         String password = PasswordEncryptionUtil.encryptPassword(user.getPassword());
         user.setPassword(password);
         

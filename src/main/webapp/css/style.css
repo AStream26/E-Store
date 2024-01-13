@@ -29,6 +29,11 @@
     color: #fff;
 }
 
+.custom-bg-primary{
+    background-color:var(--primary) !important;
+    color: #fff;
+}
+
 
 .dropdown-custom{
     border: none;
@@ -43,6 +48,10 @@
 
 .dashboard-list div :hover{
     background-color:var(--tertiary) !important;
+     cursor: pointer;
+}
+.bg-card-hover:hover{
+     background-color:var(--tertiary) !important;
      cursor: pointer;
 }
 

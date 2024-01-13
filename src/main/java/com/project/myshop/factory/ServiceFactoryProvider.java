@@ -3,6 +3,7 @@
 import com.project.myshop.enums.Service;
 import com.project.myshop.service.CategoryServiceImpl;
 import com.project.myshop.service.IService;
+import com.project.myshop.service.ProductServiceImpl;
 import com.project.myshop.service.UserServiceImpl;
 
 public class ServiceFactoryProvider {
@@ -20,6 +21,8 @@ public class ServiceFactoryProvider {
        }
        else if(service.CATEGORY_SERVICE == service)
                 return new CategoryServiceImpl();
+       else if(service.PRODUCT_SERVICE == service)
+                return new ProductServiceImpl();
        
        return null;
     }
