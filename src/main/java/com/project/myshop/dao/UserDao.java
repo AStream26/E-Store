@@ -11,13 +11,14 @@ import org.hibernate.Transaction;
 
 public class UserDao implements IDao<User> {
 
-    private Session session = null;
+     
 
     public User getUserByEmail(String email) {
 
         Transaction transaction = null;
         SessionFactory factory = null;
         User user = null;
+        Session session = null;
         try {
             factory = SessionFactoryProvider.getSessionFactory();
             session = factory.openSession();

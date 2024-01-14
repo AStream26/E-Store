@@ -57,6 +57,10 @@ public interface IDao<Model> {
         } catch (Exception exp) {
             System.err.println("Error = " + exp.getMessage());
         }
+        
+        finally{
+            SessionFactoryProvider.closeSession(factory, session);
+        }
 
         return model;
     }
@@ -83,6 +87,10 @@ public interface IDao<Model> {
         } catch (Exception exp) {
             System.err.println("Error = " + exp.getMessage());
         }
+        
+        finally{
+            SessionFactoryProvider.closeSession(factory, session);
+        }
 
         return list;
 
@@ -108,6 +116,10 @@ public interface IDao<Model> {
 
         } catch (Exception exp) {
             System.err.println("Error = " + exp.getMessage());
+        }
+        
+        finally{
+            SessionFactoryProvider.closeSession(factory, session);
         }
 
         return list;

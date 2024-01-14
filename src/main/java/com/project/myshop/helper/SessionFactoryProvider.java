@@ -28,6 +28,7 @@ public class SessionFactoryProvider {
             if(session != null){
                 session.close();
             }
+                                                                                                                            
         }
         catch(Exception exp){
             exp.printStackTrace();
